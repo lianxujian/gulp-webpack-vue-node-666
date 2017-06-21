@@ -68,7 +68,7 @@ gulp.task('webpack-build', function () {
         }
         gutil.log("[webpack]", stats.toString({}));
     });
-    //移动入口页
+    //移动入口页，也可以用html-webpack-plugin插件每次动态生成
     gulp.src('./index.html')
         .pipe(gulp.dest('./server/client/'))
 
