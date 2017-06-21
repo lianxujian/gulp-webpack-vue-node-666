@@ -47,7 +47,8 @@ gulp.task('webpack-dev', function () {
  */
 gulp.task('webpack-build', function () {
     var config = Object.create(webpackConfig);
-    config.plugins.push(new webpack.DefinePlugin({
+    config.plugins.push(
+        new webpack.DefinePlugin({
             'process.env': {
                 NODE_ENV: '"production"'
             }
