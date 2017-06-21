@@ -33,5 +33,5 @@ index入口页，gulp任务复制到了server/client中，也可以通过webpack
 index.html基本无需修改
 
 ### 8.3启动服务
-build任务完成后，cd server进入server路径，执行node index可以启动后端服务
+build任务完成后，npm start启动服务
 浏览器中打开http://localhost:3100/可以查看效果

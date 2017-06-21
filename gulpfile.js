@@ -19,6 +19,13 @@ gulp.task('webpack-dev', function () {
     //官网的解释是webpack-dev-server没有权限读取webpack的配置
     config.entry.app.unshift("webpack-dev-server/client?http://localhost:8080/", "webpack/hot/only-dev-server");
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"development"'
+            }
+        })
+    );
     var compiler = webpack(config);
     new WebpackDevServer(compiler, {
         contentBase:  "./",

@@ -9,7 +9,8 @@ export default new Vuex.Store({
     strict: process.env.NODE_ENV !== 'production', //在非生产环境下，使用严格模式
     state: {
         // 账户信息
-        user: ''
+        user: '',
+        isDevFlag: process.env.NODE_ENV === 'development'
     },
     mutations: {
         login (state, param) {

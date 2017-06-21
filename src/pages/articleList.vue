@@ -30,6 +30,7 @@
 <script>
     import Vue from 'vue'
     import Axios from '../axios/index'
+    import Mock from '../mock/mockData'
     import 'element-ui/lib/index'
     import 'element-ui/lib/theme-default/index.css'
     import {Button, Card, Form, FormItem, Input} from 'element-ui'
@@ -64,7 +65,7 @@
             showArtList: function () {
                 let me = this
                 me.$axios({
-                    url: '/showArtList',
+                    url: Axios.showArtList,
                     method: 'post',
                     data: {
                         user: ''
@@ -80,7 +81,7 @@
             showArt: function (item) {
                 let me = this
                 me.$axios({
-                    url: '/showArt',
+                    url: Axios.showArt,
                     method: 'post',
                     data: {
                         path: item.path
@@ -96,7 +97,7 @@
             clickCreate: function () {
                 let me = this
                 me.$axios({
-                    url: '/createArt',
+                    url: Axios.createArt,
                     method: 'post',
                     data:  me.form
                 }).then(function (res) {

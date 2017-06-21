@@ -9,8 +9,13 @@ let isDevFlag = process.env.NODE_ENV === 'development'
 export default
 isDevFlag ?
     {
-        showArtList: '/showArtList'
+        showArtList: '/showArtList',
+        showArt: '/showArt',
+        createArt: '/createArt'
     }
     : {
+        showArtList: '/showArtList',
+        showArt: '/showArt',
+        createArt: '/createArt'
 
     }
