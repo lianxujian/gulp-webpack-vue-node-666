@@ -6,15 +6,28 @@ export default new Router({
     routes: [
         {
             path: '/', //首页
-            component: resolve => require(['../pages/articleList.vue'], resolve)
+            component: r => require.ensure(
+                [],
+                () => r(require('../pages/articleList.vue')),
+                'articleList'
+            )
         },
         {
             path: '/articleList', //首页
-            component: resolve => require(['../pages/articleList.vue'], resolve)
+            component: r => require.ensure(
+                [],
+                () => r(require('../pages/articleList.vue')),
+                'articleList'
+            )
+                /*resolve => require(['../pages/articleList.vue'], resolve)*/
         },
         {
             path: '/manAccount', //账户管理
-            component: resolve => require(['../pages/manAccount.vue'], resolve),
+            component: r => require.ensure(
+                [],
+                () => r(require('../pages/manAccount.vue')),
+                'manAccount'
+            )
         },
         {
             path: '*', //其他

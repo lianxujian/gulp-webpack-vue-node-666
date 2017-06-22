@@ -16,22 +16,36 @@ gulp的配置文件
 ## 6.webpack.config.dev.js
 开发环境的webpack配置文件
 
-## 7.webpack.config.js
-生产环境的webpack配置文件
+## 7.webpack.config.build.js
+生产环境的webpack配置文件，可进行调试
 
-## 8.使用方法
-### 8.1前端开发
+## 8.webpack.config.release.js
+生产环境的webpack配置文件，不可调式
+
+## 9.使用方法
+### 9.1前端开发
 在根目录运行 npm run dev
 浏览器自动打开，http://localhost:8080/index.html，可自己修改，插件实现了热更新功能
 开发过程无需重新执行命令重启服务。
 demo是一个简单的vue项目，
 
-### 8.2打包代码
+### 9.2打包代码
 根目录运行 npm run build
 生成代码在server/client/dist中
 index入口页，gulp任务复制到了server/client中，也可以通过webpack插件实现该任务
 index.html基本无需修改
 
-### 8.3启动服务
-build任务完成后，npm start启动服务
+### 9.3打包发布版本代码
+根目录运行 npm run release
+生成代码在server/client/dist中
+通过webpack插件生成相应的index入口页
+
+### 9.4启动服务
+build任务完成后，npm run start启动服务
+浏览器中打开http://localhost:3100/可以查看效果
+
+### 9.5快捷命令
+npm run build-start打测试包并启动服务
+npm run release-start打线上包并启动服务
+
 浏览器中打开http://localhost:3100/可以查看效果

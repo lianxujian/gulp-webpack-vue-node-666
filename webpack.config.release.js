@@ -1,3 +1,4 @@
+// 用于打包正式线上包的配置文件
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var path=require('path');
@@ -8,7 +9,8 @@ module.exports={
     output: {
         path: path.resolve(__dirname, './server/client/dist'),
         publicPath: '/dist/',
-        filename: 'build.js'
+        filename:  "[name].[chunkhash].js",
+        chunkFilename: "[name].[chunkhash].js"
     },
     module: {
         rules: [
@@ -31,11 +33,7 @@ module.exports={
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/,
-                /*options: {写这会报错，写.babelrc不报错？？为什么@todo
-                    babelrc: false,
-                    presets: [ 'es2015']
-                }*/
+                exclude: /node_modules/
             },
             {
                 test: /\.(png|jpg|gif|svg)$/,
@@ -47,7 +45,7 @@ module.exports={
         ]
     },
     plugins: [],
-    devtool: "source-map",
+    devtool: false,
     performance: {
         hints: false
     },

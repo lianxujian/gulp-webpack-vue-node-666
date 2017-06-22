@@ -2,8 +2,10 @@ var gulp = require("gulp");
 var gutil = require('gulp-util');
 var concat = require('gulp-concat')
 var webpack = require("webpack");
-var webpackConfig = require("./webpack.config.js");
+var webpackConfigBuild = require("./webpack.config.build.js");
 var webpackConfigDev = require("./webpack.config.dev.js");
+var webpackConfigRelease = require("./webpack.config.release.js");
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 var WebpackDevServer = require("webpack-dev-server");
 var path = require("path");
 var fs = require("fs");
@@ -50,10 +52,10 @@ gulp.task('webpack-dev', function () {
 });
 
 /**
- * 使用正式配置打包
+ * 使用正式配置打包,记录map
  */
-gulp.task('webpack-build', function () {
-    var config = Object.create(webpackConfig);
+gulp.task('webpack-debug-build', function () {
+    var config = Object.create(webpackConfigBuild);
     config.plugins.push(
         new webpack.DefinePlugin({
             'process.env': {
@@ -81,6 +83,47 @@ gulp.task('webpack-build', function () {
 
 });
 
+/**
+ * 使用正式配置打包，压缩无map
+ */
+gulp.task('webpack-release-build', function () {
+    var config = Object.create(webpackConfigRelease);
+    config.plugins.push(
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            sourceMap: true,
+            except: ['$super', '$', 'exports', 'require']    //排除关键字
+        }),
+        new webpack.LoaderOptionsPlugin({
+            minimize: true
+        }),
+        //用html-webpack-plugin插件每次动态生成入口页
+        new HtmlWebpackPlugin({
+            title: 'gulp-webpack-release-version',
+            hash: true,
+            filename: path.resolve(__dirname, './server/client/index.html') ,  //输出html文件的位置
+            minify:{ //压缩HTML文件
+                removeComments:true,    //移除HTML中的注释
+                collapseWhitespace:true    //删除空白符与换行符
+            }
+        })
+    );
+    webpack(config, function (err, stats) {
+        if (err) {
+            throw new gutil.PluginError("webpack", err);
+        }
+        gutil.log("[webpack]", stats.toString({}));
+    });
+});
+
 
 gulp.task("dev", ["webpack-dev"]);
-gulp.task("build", ["webpack-build"]);
+gulp.task("build", ["webpack-debug-build"]);
+gulp.task("release", ["webpack-release-build"]);
