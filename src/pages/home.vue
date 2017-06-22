@@ -44,7 +44,7 @@
     }
 </script>
 
-<style lang="sass">
+<style rel="stylesheet/scss" lang="sass">
     .menu-container {
         width: 18%;
         text-align: center;
