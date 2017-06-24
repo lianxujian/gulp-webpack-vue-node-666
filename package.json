@@ -25,11 +25,10 @@
     "vue-resource": "^1.0.3",
     "vue-router": "^2.3.1",
     "vuex": "^2.2.1",
-    "webpack": "^2.1.0-beta.25",
-    "webpack-dev-server": "^2.1.0-beta.0",
-    "extract-text-webpack-plugin": "^2.0.0-beta",
+    "webpack": "^2.1.0-beta.25"
+  },
+  "devDependencies": {
     "html-webpack-plugin": "^2.28.0",
-    "source-map-loader": "^0.1.5",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-replace": "^0.5.4",
@@ -57,6 +56,7 @@
     "eslint-plugin-html": "^1.7.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta",
     "file-loader": "^0.9.0",
     "node-sass": "^3.10.1",
     "sass": "^0.5.0",
@@ -64,11 +64,10 @@
     "scss-loader": "0.0.1",
     "style-loader": "^0.13.2",
     "url-loader": "^0.5.7",
+    "vue-template-compiler": "^2.1.10",
     "vue-loader": "^10.2.3",
-    "vue-template-compiler": "^2.1.10"
-  },
-  "devDependencies": {
-
-
+    "source-map-loader": "^0.1.5"
+  ,
+    "webpack-dev-server": "^2.1.0-beta.0"
   }
 }
