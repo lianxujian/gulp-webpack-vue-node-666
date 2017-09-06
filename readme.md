@@ -49,3 +49,7 @@ npm run build-start打测试包并启动服务
 npm run release-start打线上包并启动服务
 
 浏览器中打开http://localhost:3100/可以查看效果
+安装mongodb
+创建data／db
+sudo chown -R $USER /data/db
+mac启动 mongod 连接mongo

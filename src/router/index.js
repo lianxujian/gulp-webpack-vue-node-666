@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Canvas from '../pages/canvas.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -28,6 +29,11 @@ export default new Router({
                 () => r(require('../pages/manAccount.vue')),
                 'manAccount'
             )
+        },
+        {
+            path: '/canvas',//canvas练习页面
+            component: Canvas
+
         },
         {
             path: '*', //其他

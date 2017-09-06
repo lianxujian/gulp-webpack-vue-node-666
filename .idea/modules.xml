@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gulp-webpack-vue-node.iml" filepath="$PROJECT_DIR$/.idea/gulp-webpack-vue-node.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gulp-webpack-vue-node.iml" filepath="$PROJECT_DIR$/.idea/gulp-webpack-vue-node.iml" />
     </modules>
   </component>
 </project>
