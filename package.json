@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gulp dev --gulpfile gulpfile.js",
     "build": "gulp build --gulpfile gulpfile.js",
-    "build-start": "npm run build && node --inspect ./server/index --open",
+    "build-start": "npm run build && node --debug ./server/index --open",
     "release": "gulp release --gulpfile gulpfile.js",
     "release-start": "npm run release && node --inspect ./server/index",
     "start": "node --debug ./server/index"
@@ -21,6 +21,7 @@
     "element-ui": "^1.2.7",
     "mockjs": "^1.0.1-beta3",
     "opn": "^5.1.0",
+    "querystring": "^0.2.0",
     "vue": "^2.1.6",
     "vue-cropper": "^0.2.0",
     "vue-resource": "^1.0.3",

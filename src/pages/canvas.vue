@@ -19,7 +19,7 @@
                 :style="{ width: windowWidth + 'px',height: windowHeight + 'px' }"
         ></vueCropper>
         <el-button type="primary" @click="finishCrop('base64')" class="btn">finish</el-button>
-        <el-button type="primary" @click="option.showCropperFlag = false" class="btn">cancel</el-button>
+        <el-button type="primary" @click="candelCrop" class="btn">cancel</el-button>
         <canvas id="creative" width="640" height="1136" ref="creativeCanvas"></canvas>
 
         <div class="creative-material-info" v-if="menuShowFlag">
@@ -70,7 +70,7 @@
         data() {
             return {
                 menuShowFlag: false,
-                headerSrc: headerImage,
+                headerSrc: localStorage.getItem('headerSrc') || headerImage,
                 option: {
                     showCropperFlag: false,
                     img: 'http://ofyaji162.bkt.clouddn.com/bg1.jpg',
@@ -159,10 +159,33 @@
             finishCrop (type){
                 let me = this;
                 // 将data上传，把url返回给headerSRC 并存储在location
+
                 me.$refs.cropper.getCropData((data) => {
-                    me.headerSrc = data
+                    var param = {
+                        imgData: data
+                    }
+                    me.$axios({
+                        url: Axios.updateHeader,
+                        method: 'post',
+                        data: JSON.stringify(param)
+                    })
+                        .then(function (res) {
+                            let src = res.data && res.data.headerSrc
+                            localStorage.setItem('headerSrc', src);
+                            me.option.showCropperFlag = false
+
+                        })
+                        .catch(function (res) {
+                            console.log(res)
+                        })
                 })
 
+            },
+            //取消裁剪
+            candelCrop(){
+                let me = this;
+                me.option.showCropperFlag = false;
+                me.headerSrc = localStorage.getItem('headerSrc') || headerImage
             }
         },
         mounted: function () {

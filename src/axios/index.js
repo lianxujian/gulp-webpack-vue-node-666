@@ -11,11 +11,13 @@ isDevFlag ?
     {
         showArtList: '/showArtList',
         showArt: '/showArt',
-        createArt: '/createArt'
+        createArt: '/createArt',
+        updateHeader: '/updateHeader'
     }
     : {
         showArtList: '/showArtList',
         showArt: '/showArt',
-        createArt: '/createArt'
+        createArt: '/createArt',
+        updateHeader: '/updateHeader'
 
     }
