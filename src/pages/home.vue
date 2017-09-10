@@ -15,6 +15,9 @@
                 <el-menu-item index="3" route="/canvas">
                     canvas练习
                 </el-menu-item>
+                <el-menu-item index="4" route="/websocket">
+                    webSocket
+                </el-menu-item>
             </el-menu>
         </div>
     </div>

@@ -22,10 +22,10 @@ router.post('/createArt',require('./controller/createArtCtrl'))
 router.post('/operateMongo',require('./controller/mongoCtrl'))
 router.post('/updateHeader',require('./controller/updateHeader'))
 
-/*router.get('/static/!*',function (req, res) {
+router.get('/static/*',function (req, res) {
     var filePath = path.join(__dirname, url.parse(req.url).pathname)
     var stream = fs.createReadStream(filePath)
     stream.pipe(res)
     //res.sendFile(filePath)
-})*/
+})
 module.exports = router

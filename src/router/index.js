@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Canvas from '../pages/canvas.vue'
+import WebSocket from '../pages/webSocket.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +34,11 @@ export default new Router({
         {
             path: '/canvas',//canvas练习页面
             component: Canvas
+
+        },
+        {
+            path: '/websocket',//canvas练习页面
+            component: WebSocket
 
         },
         {

@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <img class="header-image" :src="headerSrc" v-on:click="changeAndUploadImage"/>
+        <img class="header-image" v-bind:src="headerSrc" v-on:click="changeAndUploadImage"/>
         <vueCropper
                 ref="cropper"
                 :img="option.img"
@@ -73,7 +73,7 @@
                 headerSrc: localStorage.getItem('headerSrc') || headerImage,
                 option: {
                     showCropperFlag: false,
-                    img: 'http://ofyaji162.bkt.clouddn.com/bg1.jpg',
+                    img: '',
                     info: true,
                     size: 1,
                     outputType: 'jpeg',
@@ -167,13 +167,13 @@
                     me.$axios({
                         url: Axios.updateHeader,
                         method: 'post',
-                        data: JSON.stringify(param)
+                        data: param
                     })
                         .then(function (res) {
                             let src = res.data && res.data.headerSrc
                             localStorage.setItem('headerSrc', src);
                             me.option.showCropperFlag = false
-
+                            me.headerSrc = localStorage.getItem('headerSrc') || headerImage
                         })
                         .catch(function (res) {
                             console.log(res)
