@@ -12,12 +12,13 @@ isDevFlag ?
         showArtList: '/showArtList',
         showArt: '/showArt',
         createArt: '/createArt',
-        updateHeader: '/updateHeader'
+        updateHeader: '/updateHeader',
+        submitForm: '/submitForm'
     }
     : {
         showArtList: '/showArtList',
         showArt: '/showArt',
         createArt: '/createArt',
-        updateHeader: '/updateHeader'
-
+        updateHeader: '/updateHeader',
+        submitForm: '/submitForm'
     }

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Canvas from '../pages/canvas.vue'
 import WebSocket from '../pages/webSocket.vue'
+import FileForm from '../pages/fileform.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -37,8 +38,13 @@ export default new Router({
 
         },
         {
-            path: '/websocket',//canvas练习页面
+            path: '/websocket',//聊天室
             component: WebSocket
+
+        },
+        {
+            path: '/fileForm',//提交带文件的表单
+            component: FileForm
 
         },
         {

@@ -6,7 +6,6 @@ var qs = require('querystring')
 module.exports = function updateHeader(req, res) {
     var body = ''
     let body2 = [];
-    console.log('start x');
     req.on('data', function (chunk) {
         body+=chunk;
         body2.push(chunk); //官方这么用  https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/#request-body

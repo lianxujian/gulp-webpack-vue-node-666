@@ -18,6 +18,9 @@
                 <el-menu-item index="4" route="/websocket">
                     webSocket
                 </el-menu-item>
+                <el-menu-item index="5" route="/fileForm">
+                   fileForm
+                </el-menu-item>
             </el-menu>
         </div>
     </div>

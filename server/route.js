@@ -6,6 +6,8 @@ var router = express.Router();
 var fs = require('fs')
 var path = require('path')
 var url= require('url')
+var streamRequest = require('stream-request');
+
 
 var resolve = file => path.resolve(__dirname, file)
 
@@ -21,6 +23,9 @@ router.post('/showArt',require('./controller/showArtCtrl'))
 router.post('/createArt',require('./controller/createArtCtrl'))
 router.post('/operateMongo',require('./controller/mongoCtrl'))
 router.post('/updateHeader',require('./controller/updateHeader'))
+router.post('/submitForm',streamRequest({ stream: "myfile" }), require('./controller/submitForm'))
+// todo 需要研究这个stream-request 和formidable模块有什么区别
+
 
 router.get('/static/*',function (req, res) {
     var filePath = path.join(__dirname, url.parse(req.url).pathname)
