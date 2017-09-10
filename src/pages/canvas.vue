@@ -171,7 +171,7 @@
                     })
                         .then(function (res) {
                             let src = res.data && res.data.headerSrc
-                            localStorage.setItem('headerSrc', src);
+                            localStorage.setItem('headerSrc', 'http://' + src);
                             me.option.showCropperFlag = false
                             me.headerSrc = localStorage.getItem('headerSrc') || headerImage
                         })
