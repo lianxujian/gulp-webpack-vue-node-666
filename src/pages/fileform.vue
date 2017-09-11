@@ -40,6 +40,7 @@
 <script>
     import Axios from '../axios/index'
     import Vue from 'vue'
+    import {routerMixin} from '../mixins/mixins'
     export default {
         data(){
             return{
@@ -54,10 +55,17 @@
                 }
             }
         },
+        mixins: [routerMixin],
+        created: function () {
+            console.log('组件钩子被调用')//例如 methods, components 和 directives，将被混合为同一个对象。
+        },
         methods: {
+            hello: function(){
+                console.log('hello ')//两个对象键名冲突时，取组件对象的键值对。
+            },
             submit: function() {
                 let me = this
-                var formData = JSON.stringify(this.user); // 这里才是你的表单数据
+                var formData = JSON.stringify(this.user); // www-form
                 me.$axios({
                     url: Axios.submitForm,
                     method: 'post',
