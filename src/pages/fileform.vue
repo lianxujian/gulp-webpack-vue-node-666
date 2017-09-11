@@ -2,6 +2,7 @@
     <div class="wrapper">
         <div id="app">
             <form @submit.prevent="submit">
+                <header>首字母小写，其他大写{{headerText|toLowwer}};首字母大写，其他小写{{headerText|toUpper}}</header>
                 <div class="field">
                     姓名：<input type="text" v-model="user1.name">
                 </div>
@@ -41,9 +42,11 @@
     import Axios from '../axios/index'
     import Vue from 'vue'
     import {routerMixin} from '../mixins/mixins'
+    import {toLowwer, toUpper} from '../filters/filter'
     export default {
         data(){
             return{
+                headerText: 'adhggaioJGGJOIJGJGEdfjgegejro',
                 user1: {
                     name: '',
                     gender: ''
@@ -56,6 +59,10 @@
             }
         },
         mixins: [routerMixin],
+        filters: {
+            toLowwer: toLowwer,
+            toUpper: toUpper
+        },
         created: function () {
             console.log('组件钩子被调用')//例如 methods, components 和 directives，将被混合为同一个对象。
         },

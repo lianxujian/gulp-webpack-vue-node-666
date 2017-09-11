@@ -28,6 +28,7 @@ router.post('/submitForm',streamRequest({ stream: "myfile" }), require('./contro
 
 
 router.get('/static/*',function (req, res) {
+    //可以做权限限制
     var filePath = path.join(__dirname, url.parse(req.url).pathname)
     var stream = fs.createReadStream(filePath)
     stream.pipe(res)

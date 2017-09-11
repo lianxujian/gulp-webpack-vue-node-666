@@ -63,7 +63,7 @@
     import '../externel/jquery.qrcode.min';
     import Axios from '../axios/index'
     import Vue from 'vue'
-    Vue.use(Button)
+    Vue.use(Button)//使用插件
     import VueCropper from 'vue-cropper'
 
     export default {
