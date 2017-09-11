@@ -6,7 +6,11 @@ var router = express.Router();
 var fs = require('fs')
 var path = require('path')
 var url= require('url')
-var streamRequest = require('stream-request');
+
+//感觉不太好用，只处理一种
+//parsing data from a multipart/form-data request and putting data as streams onto a connect request
+//var streamRequest = require('stream-request');
+
 
 
 var resolve = file => path.resolve(__dirname, file)
@@ -23,8 +27,8 @@ router.post('/showArt',require('./controller/showArtCtrl'))
 router.post('/createArt',require('./controller/createArtCtrl'))
 router.post('/operateMongo',require('./controller/mongoCtrl'))
 router.post('/updateHeader',require('./controller/updateHeader'))
-router.post('/submitForm',streamRequest({ stream: "myfile" }), require('./controller/submitForm'))
-// todo 需要研究这个stream-request 和formidable模块有什么区别
+router.post('/submitForm', require('./controller/submitForm'))
+
 
 
 router.get('/static/*',function (req, res) {

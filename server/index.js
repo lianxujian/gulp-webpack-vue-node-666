@@ -14,6 +14,7 @@ app.listen(app.get('port'), function () {
 let server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 io.sockets.on('connection',function(socket){
+
     socket.emit('message',{text:'你上线了'});
     count++;
     console.log('User connected' + count + 'user(s) present');

@@ -72,7 +72,7 @@
             },
             submit: function() {
                 let me = this
-                var formData = JSON.stringify(this.user); // www-form
+                let formData = JSON.stringify(me.user1); // www-form
                 me.$axios({
                     url: Axios.submitForm,
                     method: 'post',
