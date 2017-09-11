@@ -6,6 +6,7 @@
 </template>
 
 <style>
+
     .wrapper {
         display: flex;
         flex-direction: column;
@@ -18,7 +19,10 @@
 <script>
     import Vue from 'vue'
     import VueSocketio from 'vue-socket.io';
-    //Vue.use(VueSocketio, 'http://127.0.0.1:3100');
+    import Toast from '../myPlugin/toast';
+    import '../myPlugin/toast.css'
+    Vue.use(Toast);
+    Vue.use(VueSocketio, 'http://127.0.0.1:3100');
 
     export default {
         data() {
@@ -30,7 +34,13 @@
         methods: {},
         mounted: function () {
             let me = this
-                me.$socket.emit('connect', 'me'); //在这里触发connect事件
+            console.log(me.$toastMsg);
+            let toastStyle = {
+                'width': '800px',
+                'border-radius': '0px'
+            }
+            me.$toast('hello vue plugin', toastStyle, 'bottom')
+            me.$socket.emit('connect', 'me'); //在这里触发connect事件
 
         },
         sockets:{

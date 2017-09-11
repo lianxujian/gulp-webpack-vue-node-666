@@ -1,0 +1,33 @@
+.vue-toast{
+    position: fixed;
+    box-sizing: border-box;
+    max-width: 80%;
+    height: 40px;
+    line-height: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 9999;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    animation: show-toast .5s;
+    -webkit-animation: show-toast .5s;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.toast-bottom{
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+
+}
+.toast-center{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+
+}
