@@ -46,7 +46,7 @@
     export default {
         data(){
             return{
-                headerText: 'adhggaioJGGJOIJGJGEdfjgegejro',
+                headerText: 'hello world 我helloword',//单词边界或空白边界测试，相应的正则
                 user1: {
                     name: '',
                     gender: ''
