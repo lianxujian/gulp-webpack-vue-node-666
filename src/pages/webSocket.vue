@@ -40,7 +40,6 @@
                 'border-radius': '0px'
             }
             me.$toast('hello vue plugin', toastStyle, 'bottom')
-            me.$socket.emit('connect', 'me'); //在这里触发connect事件
 
         },
         sockets:{
@@ -48,6 +47,7 @@
 
             },
             users: function(data){
+                let me = this
                 console.log('Got update from the server');
                 console.log('There are ' + data.number + 'users');
                 me.userCount = data.number

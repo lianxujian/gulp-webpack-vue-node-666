@@ -38,7 +38,11 @@ export default new Router({
         },
         {
             path: '/websocket',//聊天室
-            component: resolve => require(['../pages/webSocket.vue'], resolve)
+            component: r => require.ensure(//这种相对import类型，可以实现客户端的按需加载。
+                [],
+                () => r(require('../pages/webSocket.vue')),
+                'websocket'
+            )
 
         },
         {

@@ -20,7 +20,7 @@ let server2 = http.createServer(app2);
 let io = socketIo.listen(server2);
 io.sockets.on('connection',function(socket){
     let count = 0;
-    socket.emit('message',{text:'你上线了'});
+    console.log('User connected');
     count++;
     socket.emit('users',{number:count});
     socket.broadcast.emit('users',{number:count});
