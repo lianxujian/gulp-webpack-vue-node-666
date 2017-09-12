@@ -18,17 +18,9 @@ app1.use('/', require('./route'));
 let app2 = express();
 let server2 = http.createServer(app2);
 let io = socketIo.listen(server2);
+let socketServer = require('./controller/socketServer')
 io.sockets.on('connection',function(socket){
-    let count = 0;
-    console.log('User connected');
-    count++;
-    socket.emit('users',{number:count});
-    socket.broadcast.emit('users',{number:count});
-    socket.on('disconnect',function(){
-        count--;
-        console.log('User disconnected');
-        socket.broadcast.emit('users',{number:count});
-    });
+    socketServer(socket)
 });
 server2.listen(3000);
 
