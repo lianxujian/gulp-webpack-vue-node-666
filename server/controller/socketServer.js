@@ -1,5 +1,5 @@
+let count = 0;
 module.exports = function socketServer(socket) {
-    let count = 0;
     console.log('User connected');
     count++;
     socket.emit('users',{number:count});

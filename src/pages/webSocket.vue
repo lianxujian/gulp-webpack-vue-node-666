@@ -22,7 +22,7 @@
     import Toast from '../myPlugin/toast';
     import '../myPlugin/toast.css'
     Vue.use(Toast);
-    Vue.use(VueSocketio, 'http://localhost:3000');
+    Vue.use(VueSocketio, 'ws://localhost:3000');
 
     export default {
         data() {
