@@ -27,7 +27,7 @@ Toast.install = function (Vue, options) {
         let {keys, values, entries} = Object;
         let tpl = new toastTpl().$mount().$el;
         for (let [key, value] of entries(option)) {
-            tpl.setAttribute(key, value)
+            tpl.style[key] = value
         }
         document.body.appendChild(tpl);
         setTimeout(function () {        // 4、延迟2.5秒后移除该提示
