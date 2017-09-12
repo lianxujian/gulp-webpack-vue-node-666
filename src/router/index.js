@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Canvas from '../pages/canvas.vue'
-import WebSocket from '../pages/webSocket.vue'
 import FileForm from '../pages/fileform.vue'
 Vue.use(Router)
 
@@ -9,7 +8,7 @@ export default new Router({
     routes: [
         {
             path: '/', //首页
-            component: r => require.ensure(
+            component: r => require.ensure(//这种相对import类型，可以实现客户端的按需加载。
                 [],
                 () => r(require('../pages/articleList.vue')),
                 'articleList'
@@ -39,7 +38,7 @@ export default new Router({
         },
         {
             path: '/websocket',//聊天室
-            component: WebSocket
+            component: resolve => require(['../pages/webSocket.vue'], resolve)
 
         },
         {

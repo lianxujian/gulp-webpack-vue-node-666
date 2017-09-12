@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        总人数<div v-model="userCount"></div>
+        总人数<div>{{userCount}}</div>
 
     </div>
 </template>
@@ -22,7 +22,7 @@
     import Toast from '../myPlugin/toast';
     import '../myPlugin/toast.css'
     Vue.use(Toast);
-    Vue.use(VueSocketio, 'http://127.0.0.1:3100');
+    Vue.use(VueSocketio, 'http://localhost:3000');
 
     export default {
         data() {
