@@ -2,9 +2,9 @@
  * Created by juntingliu2 on 2017/3/31.
  */
 // 后台入口文件
-const express = require('express')
+const express = require('express');
 const socketIo = require('socket.io');
-const http = require('http')
+const http = require('http');
 
 let app1 = express()
 app1.set('port', (process.env.port || 3100))

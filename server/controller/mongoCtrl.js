@@ -2,24 +2,24 @@
  * Created by juntingliu2 on 2017/4/6.
  */
 const mongoose = require("mongoose");
-const path = require('path')
-let Util = require('../lib/util')
+const path = require('path');
+let Util = require('../lib/util');
 mongoose.connect('mongodb://localhost/myblog', function () {
-    console.log("连接成功！")
+    console.log("默认blog连接成功！");
 });
 let Schema = mongoose.Schema;
 //骨架模版
 let accountSchema = new Schema({
     user: String,
     password: String
-})
+});
 //模型
 let Account = mongoose.model('Account', accountSchema);
-//存储数据
+/*//存储数据
 let account1 = new Account({
     user: 'junting',
     password: 'junting'
-})
+});
 //保存数据库
 account1.save(function (err) {
     if (err) {
@@ -27,11 +27,11 @@ account1.save(function (err) {
         return;
     }
     console.log('保存成功！')
-})
-new Account({
+})*/
+/*new Account({
     user: '1',
     password: '1'
-}).save()
+}).save()*/
 module.exports = function showArt(req, res) {
     req.on('data', function (data) {
         let tempContent = Util.cloneObject(JSON.parse(decodeURIComponent(data)))
