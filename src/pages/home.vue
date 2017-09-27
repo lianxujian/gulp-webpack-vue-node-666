@@ -21,6 +21,9 @@
                 <el-menu-item index="5" route="/fileForm">
                    fileForm
                 </el-menu-item>
+                <el-menu-item index="6" route="/ES6">
+                    ES6
+                </el-menu-item>
             </el-menu>
         </div>
     </div>

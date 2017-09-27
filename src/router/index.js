@@ -51,6 +51,20 @@ export default new Router({
 
         },
         {
+            path: '/fileForm',//提交带文件的表单
+            component: FileForm
+
+        },{
+            path: '/ES6',//ES6
+            component: r => require.ensure(//这种相对import类型，可以实现客户端的按需加载。
+                [],
+                () => r(require('../pages/ES6.vue')),
+                'es6'
+            )
+
+
+        },
+        {
             path: '*', //其他
             redirect: '/'
         }

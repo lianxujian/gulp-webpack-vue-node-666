@@ -41,7 +41,7 @@
     import '../myPlugin/toast.css';
     import Axios from '../axios/index'
     Vue.use(Toast);
-    Vue.use(VueSocketio, 'ws://localhost:3000');
+
 
 
     export default {
@@ -115,7 +115,7 @@
                     let transaction = db.transaction([me.DBTableName], "readwrite");
                     // 当所有的数据都被增加到数据库时执行一些操作
                     transaction.oncomplete = function(e) {
-                        alert("All done!");
+                        console.log("All done!");
                     };
 
                     transaction.onerror = function(e) {
@@ -125,6 +125,7 @@
 
                     let objectStore = transaction.objectStore(me.DBTableName);
                     for (let i in data) {
+                        //put添加数据，重复添加会更新原有数据
                         let req = objectStore.add(data[i]);
                         req.onsuccess = function(e) {
                             callback(e)
@@ -140,6 +141,7 @@
         },
         mounted: function () {
             let me = this
+            Vue.use(VueSocketio, 'ws://localhost:3000');
             console.log(me.$toastMsg);
             let toastStyle = {
                 'width': '800px',
@@ -166,8 +168,6 @@
             },
             users: function(data){
                 let me = this
-                console.log('Got update from the server');
-                console.log('There are ' + data.number + 'users');
                 me.userCount = data.number
             },
             success: function (data) {

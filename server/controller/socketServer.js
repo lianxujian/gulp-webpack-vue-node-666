@@ -18,11 +18,6 @@ let count = 0;
 module.exports = function socketServer(socket) {
     console.log('User connected');
     count++;
-    new ChatModel({
-        user: 'system',
-        time: new Date().getDate(),
-        content: '' + count
-    }).save()
     socket.emit('users', {number: count});
     socket.broadcast.emit('users', {number: count});
     socket.on('disconnect', function () {

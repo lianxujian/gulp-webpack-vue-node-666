@@ -3,7 +3,7 @@
  */
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
-var  rev = require('gulp-rev');
+var  rev = require('gulp-rev');//版本号
 var rename = require('gulp-rename');
 var concat = require('gulp-concat');
 var cleanCss = require('gulp-clean-css');// 有url问题。路径会变
