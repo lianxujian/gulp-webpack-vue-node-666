@@ -24,6 +24,12 @@
                 <el-menu-item index="6" route="/ES6">
                     ES6
                 </el-menu-item>
+                <el-menu-item index="7" route="/zhengxin">
+                    zhengxin
+                </el-menu-item>
+                <el-menu-item index="8" route="/routerexec:id">
+                    routerexec
+                </el-menu-item>
             </el-menu>
         </div>
     </div>

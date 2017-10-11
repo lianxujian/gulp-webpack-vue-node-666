@@ -9,7 +9,6 @@
             特殊算法的：background-position（方向长度 / 该方向除背景图之外部分总长度 * 100）、filter 系列函数等；
             如果自身设置 position: absolute，“父元素”指：相对于离它最近的那个 position 不为 static 的祖先元素，如果没有这样的元素，则相对于视口。
             如果 position: fixed，“父元素”指视口。
-
         </div>
         <div class="outter1">
             <div class="inner1">
@@ -725,6 +724,44 @@
                 f.call({ id: 42 });
             }
         },
-        mounted() {}
+        mounted() {
+            //1、fibonacci
+            async function fib (n) {
+                let [pre, cur] = [1, 1];
+                if (n === 1){
+                    return pre;
+                }
+                if (n === 2){
+                    return cur;
+                }
+                for (let i = 0;i < (n-2); i++){
+                    let tempPre = pre;
+                    await ([pre, cur] = [cur, tempPre + cur])
+                }
+                return cur;
+            }
+            let n = 5
+            fib(n).then(v => console.log(v))
+
+            //2、new
+            function A(){
+                this.name = 'A'
+            }
+            A.prototype.say = function () {
+                console.log(this.name);
+            }
+
+            function getObject(className){
+                var temp = {}
+                className.call(temp)
+                temp.__proto__ = className.prototype;
+                return temp;
+            }
+
+            var a = getObject(A)
+            a.say()
+
+
+        }
     }
 </script>
