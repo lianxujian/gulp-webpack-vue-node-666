@@ -27,7 +27,7 @@
         methods: {
             fetchData () {
                 let thisId = this.$route.params.id
-
+                console.log(thisId)
             }
         }
     }
