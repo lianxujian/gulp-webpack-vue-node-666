@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "es2015"
-  ],
+  "presets": ["es2015"],
   "plugins": [
     [
       "transform-runtime",
@@ -12,6 +10,7 @@
         "moduleName": "babel-runtime"
       }
     ],
-    ["syntax-dynamic-import"]
+    ["syntax-dynamic-import"], //懒加载
+    ["transform-object-rest-spread"] //…mapActions
   ]
 }

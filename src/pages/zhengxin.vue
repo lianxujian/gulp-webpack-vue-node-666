@@ -27,6 +27,9 @@
             //1、fibonacci
             async function fib (n) {
                 let [pre, cur] = [1, 1];
+                if (n <= 0){
+                    return null;
+                }
                 if (n === 1){
                     return pre;
                 }
@@ -77,7 +80,6 @@
 
             //4、template
             var templateFunc = function (str, obj) {
-                debugger
                 var reg = /\$\{(\w*)\}/g;
                 return str.replace(reg, function (match, key, value) {
                     if (obj[key]){
