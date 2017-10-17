@@ -725,43 +725,22 @@
             }
         },
         mounted() {
-            //1、fibonacci
-            async function fib (n) {
-                let [pre, cur] = [1, 1];
-                if (n === 1){
-                    return pre;
+            let [x, y, z, w = 'default'] = new Set(['a', 'a', 'b', 'c'])
+            console.log(y)//b
+            console.log(w)// defalut
+            function* fibs() {
+                let a = 0;
+                let b = 1;
+                while (true) {
+                    yield a;
+                    [a, b] = [b, a + b];
+                    // 上下都可以
+                    //[b,  a] = [a+b, b]
                 }
-                if (n === 2){
-                    return cur;
-                }
-                for (let i = 0;i < (n-2); i++){
-                    let tempPre = pre;
-                    await ([pre, cur] = [cur, tempPre + cur])
-                }
-                return cur;
             }
-            let n = 5
-            fib(n).then(v => console.log(v))
-
-            //2、new
-            function A(){
-                this.name = 'A'
-            }
-            A.prototype.say = function () {
-                console.log(this.name);
-            }
-
-            function getObject(className){
-                var temp = {}
-                className.call(temp)
-                temp.__proto__ = className.prototype;
-                return temp;
-            }
-
-            var a = getObject(A)
-            a.say()
-
-
+            let [first, second, third, fourth, fifth, sixth, seven, eight, nine, ten ] = fibs();
+            console.log(first, second, third, fourth, fifth, sixth, seven, eight, nine, ten)
+            //0 1 1 2 3 5 8 13 21 34
         }
     }
 </script>

@@ -104,10 +104,7 @@ export default new Vuex.Store({
     },
     getters: {
         doubleCount (state) {
-            return state.count * 2
-        },
-        sumWithRootCount (state, getter, rootState) {
-            return state.count + rootState.count
+            return state.count
         }
 
     },

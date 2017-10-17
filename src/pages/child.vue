@@ -28,11 +28,24 @@
             //渲染完成可以获取el实例
             // 渲染完成可以操作dom节点
             debugger
-            this.$store.commit('increment')
-            console.log(this.aCount)
-            console.log(this.doubleCount)
-            this.someAction()
-            this.renamesomeOtherAction()
+            let me = this;
+            me.$store.subscribe((mutation, state) => {
+                console.log('mutation.type' + mutation.type)
+                console.log('mutation.type' + mutation.payload)
+            })
+            me.$store.watch(function (state, getters) {
+                console.log(state)
+                console.log(getters)
+                return state.count
+            }, n => {
+                console.log('watched: ', n)
+            })
+            me.$store.commit('increment')
+            console.log(me.aCount)
+            console.log(me.doubleCount)
+            me.someAction()
+            me.renamesomeOtherAction()
+
         },
         computed: {
             ...mapState('a', {

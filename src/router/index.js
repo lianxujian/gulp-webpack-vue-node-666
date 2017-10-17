@@ -114,3 +114,6 @@ thisRouter.beforeEach((to, from, next) => {
 })
 
 export {thisRouter as default}
+
+//感觉router也没有支持热更新?
+//vuex不使用hot.moudle的时侯也不支持热更新
