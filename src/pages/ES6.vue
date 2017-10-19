@@ -76,6 +76,9 @@
         <div @click="classAndExtend"> classAndExtend</div>
         <div @click="asyncEex"> asyncEex</div>
         <div @click="arrowFunc"> arrowFunc</div>
+        <div @click="jiegouExe"> jiegouExe</div>
+        <div @click="symbolExe"> symbolExe</div>
+        <div @click="objectExe"> objectExe</div>
     </div>
 </template>
 
@@ -302,6 +305,9 @@
 
                 let array = Array.from(s2);
                 console.log(array)// [1, 2, 3, 4, NaN]
+
+                // 去除数组的重复成员
+                console.log([...new Set([1,2,3,4,4,3,2,1])])
                 //WeakSet 的成员只能是对象，而不能是其他类型的值。
                 //WeakSet 中的对象都是弱引用，即垃圾回收机制不考虑 WeakSet 对该对象的引用，
 
@@ -657,7 +663,12 @@
 
                 // 三 ES6的实现方法
                 class Point {
+                    /*static mystate = '我是类的静态属性'//静态的不能通过实例访问，只能通过类访问
+                    static print  () {//静态方法可以被子类继承，但静态方法只能通过类名访问
+                        console.log(Point.mystate)
+                    }*/
                     constructor(x, y) {//构造函数
+                        console.log(new.target === Point);
                         this.x = x;
                         this.y = y;
                     }
@@ -668,8 +679,16 @@
                 }
 
                 class ColorPoint extends Point {
+                   /* # a = 0;
+                    # b = 1;
+                    # sum () { return #a + #b ;}
+                    static  print () {
+                        console.log(#sum())
+                        return super.print() + 'too';
+                    }*/
                     constructor(x, y, color) {
-                        super(x, y); // 调用父类的constructor(x, y)
+                        console.log(new.target === ColorPoint);//子类继承父类时，new.target会返回子类。
+                        super(x, y); // 子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。
                         this.color = color;
                     }
 
@@ -685,6 +704,13 @@
                 console.log(Object.prototype.toString.call(p))//[object Object]
                 console.log(p instanceof Point)//true
                 console.log(typeof p)//object
+                console.log(Object.getPrototypeOf(ColorPoint) === Point)//true
+                console.log(ColorPoint.__proto__ === Point)//true
+                console.log(ColorPoint.prototype.__proto__ === A.prototype)//true
+
+                var cp = new ColorPoint()
+                //ColorPoint.print()
+                //cp.sum()
 
             },
             asyncEex: function () {
@@ -722,25 +748,151 @@
                     },100)
                 }
                 f.call({ id: 42 });
+            },
+            jiegouExe: function () {
+                let [x, y, z, w = 'default'] = new Set(['a', 'a', 'b', 'c'])
+                console.log(y)//b
+                console.log(w)// defalut
+                function* fibs() {
+                    let a = 0;
+                    let b = 1;
+                    while (true) {
+                        yield a;
+                        [a, b] = [b, a + b];
+                        // 上下都可以
+                        //[b,  a] = [a+b, b]
+                    }
+                }
+                let [first, second, third, fourth, fifth, sixth, seven, eight, nine, ten ] = fibs();
+                console.log(first, second, third, fourth, fifth, sixth, seven, eight, nine, ten)
+                //0 1 1 2 3 5 8 13 21 34
+                function f() {
+                    console.log('aaa');//如果默认值是一个表达式，惰性求值，所以不会被打印
+                }
+                let [fv = f()] = [1];
+
+                let {keya, keyb} = {keyb: 1, keya: 0}
+                console.log(keya,  keyb)//0,1
+                let {keyaa: keyaaa, keybb: keybbb} = {keyaa: 0, keybb: 1}
+                //console.log(keyaa)//keyaa is not defined
+                console.log(keybbb)//1
+
+                let [a, b, c, d, e] = 'hello';
+                console.log(a, b, c, d, e) //h e l l o
+                let {length : len} = 'hello';
+                console.log(len)// 5
+
+
+                function move({x = 0, y = 0} = {}) {
+                    return [x, y];
+                }
+
+                move({x: 3, y: 8}); // [3, 8]
+                move({x: 3}); // [3, 0]
+                move({}); // [0, 0]
+                move(); // [0, 0]
+
+                [[1, 2], [3, 4]].map(([a, b]) => {
+                    console.log(a + b)//3,7
+                });
+            },
+            symbolExe: function () {
+                //Symbol，表示独一无二的值
+                //Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。
+                let s1 = Symbol('lalala')
+                let s2 = Symbol('lalala')
+                console.log(typeof  s1)//symbol
+                console.log(s1 === s2) //false
+                //console.log('your symbol is' + s1)//Cannot convert a Symbol value to a string
+                //只能显示的转换为数值
+                console.log('your symbol is ' + s2.toString())//your symbol is Symbol(lalala)
+                //可以转换为布尔
+                console.log(Boolean(s1)) // true
+                console.log(!s1)  // false
+                if (s1) {
+                    // ...
+                }
+
+                //不能转换为数值
+                //console.log(Number(s1)) //  Cannot convert a Symbol value to a number
+                //console.log(s1 + 2) // TypeError
+
+                let obj = {
+                    [s1]: function (arg) {
+                        console.log(arg)
+                    },
+                    num: 1
+                }
+                obj[s1](123)
+                for (let i in obj){
+                    console.log(i)//num
+                }
+                console.log(Object.getOwnPropertyDescriptor(obj, 'num'))//对象
+                console.log(Object.getOwnPropertyNames(obj))//["num"]
+                console.log(Object.getOwnPropertySymbols(obj))//[Symbol(lalala)]
+                console.log(Reflect.ownKeys(obj))//["num", Symbol(lalala)]
+                //Symbol.for为 Symbol 值登记的名字，是全局环境的，可以在不同的 iframe 或 service worker 中取到同一个值。
+                let s11 = Symbol.for('aaa');
+                let s22 = Symbol.for('aaa');
+                console.log(s11 === s22) // true
+
+                let s111 = Symbol.for("foo");
+                console.log(Symbol.keyFor(s111)) // "foo"
+
+                let s222 = Symbol("foo");
+                console.log(Symbol.keyFor(s222)) // undefined
+            },
+            objectExe: function () {
+                Object.prototype.bar = 1;
+                let kv = 'keyvalue'
+                let obj = {kv}
+                console.log(Object.getOwnPropertyDescriptor(obj, 'kv'))//{value: "keyvalue", writable: true, enumerable: true, configurable: true}
+                //有四个操作会忽略enumerable为false的属性。
+                //for...in循环：只遍历对象自身的和继承的可枚举的属性。
+                //Object.keys()：返回对象自身的所有可枚举的属性的键名。
+                //JSON.stringify()：只串行化对象自身的可枚举的属性。
+                //Object.assign()： 忽略enumerable为false的属性，只拷贝对象自身的可枚举的属性。
+
+
+
+                // for...in循环遍历对象自身的和继承的可枚举属性（不含 Symbol 属性）。
+                // Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性（不含 Symbol 属性）的键名。
+                // Object.getOwnPropertyNames返回一个数组，包含对象自身的所有属性（不含 Symbol 属性，但是包括不可枚举属性）的键名。
+                // Object.getOwnPropertySymbols返回一个数组，包含对象自身的所有 Symbol 属性的键名。
+                // Reflect.ownKeys返回一个数组，包含对象自身的所有键名，不管键名是 Symbol 或字符串，也不管是否可枚举。
+                for (let i in obj){
+                    if (obj.hasOwnProperty(i)) {
+                        console.log(i);
+                    }
+                }
+
+                function Car (desc) {
+                    this.color = "red";
+                }
+                Car.prototype = {
+                    getInfo: function() {
+                        return 'A ' + this.color + ' '+ '.';
+                    }
+                };
+                var car =  Object.create(Car.prototype);
+                car.color = "blue";
+                console.log(car.getInfo());//A blue .
+
+                let proto = {};
+                let obj1 = { x: 10 };
+                Object.setPrototypeOf(obj1, proto);
+                proto.y = 20;
+                proto.z = 40;
+                console.log(obj1.x, obj1.y, obj1.z) // 10,20,40
+
+                function Rectangle() {}
+                const rec = new Rectangle();
+                console.log(Object.getPrototypeOf(rec) === Rectangle.prototype )// true
+
             }
         },
         mounted() {
-            let [x, y, z, w = 'default'] = new Set(['a', 'a', 'b', 'c'])
-            console.log(y)//b
-            console.log(w)// defalut
-            function* fibs() {
-                let a = 0;
-                let b = 1;
-                while (true) {
-                    yield a;
-                    [a, b] = [b, a + b];
-                    // 上下都可以
-                    //[b,  a] = [a+b, b]
-                }
-            }
-            let [first, second, third, fourth, fifth, sixth, seven, eight, nine, ten ] = fibs();
-            console.log(first, second, third, fourth, fifth, sixth, seven, eight, nine, ten)
-            //0 1 1 2 3 5 8 13 21 34
+
         }
     }
 </script>

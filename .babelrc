@@ -11,6 +11,6 @@
       }
     ],
     ["syntax-dynamic-import"], //懒加载
-    ["transform-object-rest-spread"] //…mapActions
+    ["transform-object-rest-spread"]
   ]
 }
